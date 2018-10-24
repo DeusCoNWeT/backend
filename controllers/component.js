@@ -4,7 +4,6 @@
 var Component = require('../models/component');
 
 
-// Conseguir datos de un usuario
 
 
 exports.component_create = function (req, res) {
@@ -20,14 +19,14 @@ exports.component_create = function (req, res) {
 
     component.save(function (err) {
         if (err) {
-            return next(err);
+             return res.status(500).send({ message: 'Error en la petición1' });
         }
-        res.send('Component Created successfully')
+        return res.status(201).send({ component });
     })
 };
 
 
-exports.getComponentbyId = function (req, res) {//your code here
+exports.getComponentbyId = function (req, res) {
 
     var componentId = req.params.id;
 
@@ -47,22 +46,22 @@ exports.getComponent = function (req, res) {//your code here
 
     var search_key = req.query;
 
-    //var query=['search_key']
     Component.find(search_key, function (err, component) {
-        if (err)
-            return res.send(err);
+        if (err) return res.status(500).send({ message: 'Error en la petición1' });
+
+        if (!component) return res.status(404).send({ message: 'EL componente no existe' });
 
         return res.status(200).send({ component });
     });
 };
 
-exports.putComponent = function (req, res) {//your code here
+exports.putComponent = function (req, res) {
 
     var componentId = req.params.id;
 
     Component.findOneAndUpdate(componentId, {$set: req.body}, function (err, component) {
-        if (err) return next(err);
-        res.send('Component udpated.');
+        if (err) return res.status(500).send({ message: 'Error en la petición1' });
+        return res.status(200).send({ component });
     });
 };
 
@@ -72,21 +71,25 @@ exports.putComponent = function (req, res) {//your code here
 exports.deleteComponent = function (req, res) {
     var componentId = req.params.id;
     Component.findByIdAndRemove(componentId, function (err) {
-        if (err) return next(err);
-        res.send('Deleted successfully!');
+        if (err) return res.status(204).send({ message: 'No content' });
+        return res.status(200).send({ message: 'Deleted successfully!' });
+   
     })
 };
 
-exports.getRandomComponent = function (req, res) {//your code here
-// Get the count of all users
+
+
+//Metodo con random, analizando BVA
+exports.getRandomComponent = function (req, res) {
+
 var count= Component.count();
 
 var random = Math.floor(Math.random() * 5)
 var count1=1;
-  // Again query all users but only fetch one offset by our random #
+
   Component.findOne().skip(random).exec(
     function (err, result) {
-      // Tada! random user
+
       return res.status(200).send({result});
     })
 
