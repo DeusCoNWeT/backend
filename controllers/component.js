@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 // Cargamos los modelos para usarlos posteriormente
 var Component = require('../models/component');
@@ -7,7 +7,7 @@ var Component = require('../models/component');
 
 
 exports.component_create = function (req, res) {
-    let component = new Component(
+    var component = new Component(
         {
             name: req.body.name,
             directory: req.body.directory,
@@ -19,10 +19,10 @@ exports.component_create = function (req, res) {
 
     component.save(function (err) {
         if (err) {
-             return res.status(500).send({ message: 'Error en la petición1' });
+            return res.status(500).send({ message: 'Error en la petición1' });
         }
         return res.status(201).send({ component });
-    })
+    });
 };
 
 
@@ -59,7 +59,7 @@ exports.putComponent = function (req, res) {
 
     var componentId = req.params.id;
 
-    Component.findOneAndUpdate(componentId, {$set: req.body}, function (err, component) {
+    Component.findOneAndUpdate(componentId, { $set: req.body }, function (err, component) {
         if (err) return res.status(500).send({ message: 'Error en la petición1' });
         return res.status(200).send({ component });
     });
@@ -73,7 +73,7 @@ exports.deleteComponent = function (req, res) {
     Component.findByIdAndRemove(componentId, function (err) {
         if (err) return res.status(204).send({ message: 'No content' });
         return res.status(200).send({ message: 'Deleted successfully!' });
-   
+
     })
 };
 
@@ -82,16 +82,16 @@ exports.deleteComponent = function (req, res) {
 //Metodo con random, analizando BVA
 exports.getRandomComponent = function (req, res) {
 
-var count= Component.count();
+    var count = Component.count();
 
-var random = Math.floor(Math.random() * 5)
-var count1=1;
+    var random = Math.floor(Math.random() * 5)
+    var count1 = 1;
 
-  Component.findOne().skip(random).exec(
-    function (err, result) {
+    Component.findOne().skip(random).exec(
+        function (err, result) {
 
-      return res.status(200).send({result});
-    })
+            return res.status(200).send({ result });
+        })
 
 
 }

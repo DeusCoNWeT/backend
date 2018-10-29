@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 
 var express = require('express');
@@ -14,9 +14,9 @@ var api = express.Router();
 // Creamos una ruta para los métodos que tenemos en nuestros controladores
 
 // Get introductorio
-api.get('/', function(request, response){
-    response.send('You made it to the home page.')
-  });
+api.get('/', function (response) {
+    response.send('You made it to the home page.');
+});
 
 
 // POST COMPONENT
@@ -40,7 +40,7 @@ api.put('/components/:id', ComponentController.putComponent);
 
 
 //Delete
-api.delete('/components/:id',ComponentController.deleteComponent);
+api.delete('/components/:id', ComponentController.deleteComponent);
 
 
 api.get('/random', ComponentController.getRandomComponent);

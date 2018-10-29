@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 
 var mongoose =  require('mongoose');
@@ -7,7 +7,7 @@ var mongoose =  require('mongoose');
 var Schema = mongoose.Schema;
 
 // Creamos el objeto del esquema de componentes y sus atributos
-var componentSchema = Schema({
+var componentSchema = new Schema({
     name: String,
     directory: String,
     description: String,

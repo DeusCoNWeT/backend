@@ -3,7 +3,7 @@
         "config_id": "development",
         "app_name": "my app",
         "direction": "localhost",
-	"mongo_port":27017,
+	    "mongo_port": 27017,
         "node_port": 3800,
         "database": "dashboards"
     }
