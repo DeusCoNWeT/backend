@@ -1,12 +1,12 @@
 'use strict'
 
-// Cargamos el módulo de mongoose
+
 var mongoose =  require('mongoose');
 
-// Usaremos los esquemas
+
 var Schema = mongoose.Schema;
 
-// Creamos el objeto del esquema y sus atributos
+// Creamos el objeto del esquema de componentes y sus atributos
 var componentSchema = Schema({
     name: String,
     directory: String,

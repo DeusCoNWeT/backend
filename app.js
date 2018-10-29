@@ -13,6 +13,8 @@ var component = require('./routes/component');
 
 //cargar middlewares
 //un metodo que se ejecuta antes que llegue a un controlador
+
+
 //Configuramos bodyParser para que convierta el body de nuestras peticiones a JSON
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -21,4 +23,6 @@ app.use(bodyParser.json());
 app.use('/api', component);
 //app.use('/api', component);
 // exportamos este módulo para poder usar la variable app fuera de este archivo
+
+// exportamos
 module.exports = app;
