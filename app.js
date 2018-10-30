@@ -18,6 +18,12 @@ app.use(bodyParser.json());
 // Cargamos las rutas
 app.use('/api', component);
 app.use('/api', component);
+// Ruta no espicificada
 
+app.all('*', (req, res, next) => {
+    var err = new Error('La ruta no es existe');
+    err.status = 404;
+    next(err);
+  });
 // exportamos
 module.exports = app;
