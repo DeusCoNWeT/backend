@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
 
 var express = require('express');
-
+var asyncMiddleware = require('../middlewares/async');
 // Cargamos el controlador
 var ComponentController = require('../controllers/component');
 
@@ -14,13 +14,14 @@ var api = express.Router();
 // Creamos una ruta para los métodos que tenemos en nuestros controladores
 
 // Get introductorio
-api.get('/', function (response) {
-    response.send('You made it to the home page.');
-});
+api.get('/', function(request, response){
+    response.send('You made it to the home page.')
+  });
 
 
 // POST COMPONENT
-api.post('/components', ComponentController.component_create);
+api.post('/components',asyncMiddleware(ComponentController.component_create
+    ));
 
 
 
@@ -28,23 +29,22 @@ api.post('/components', ComponentController.component_create);
     //localhost:3800/api/component    (Devuelve todos los componentes de la colección)
     //localhost:3800/api/component?name=prueba
 
-api.get('/components', ComponentController.getComponent);
+api.get('/components', asyncMiddleware(ComponentController.getComponent));
 
 
 //GET COMPONENT BY ID
-api.get('/components/:id', ComponentController.getComponentbyId);
+api.get('/components/:id', asyncMiddleware(ComponentController.getComponentbyId));
 
 
 //UPDATE COMPONENT
-api.put('/components/:id', ComponentController.putComponent);
+api.put('/components/:id', asyncMiddleware(ComponentController.putComponent));
 
 
 //Delete
-api.delete('/components/:id', ComponentController.deleteComponent);
+api.delete('/components/:id',asyncMiddleware(ComponentController.deleteComponent));
 
 
 api.get('/random', ComponentController.getRandomComponent);
-
 
 
 // Exportamos la configuración

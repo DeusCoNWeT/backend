@@ -1,81 +1,90 @@
-'use strict';
+'use strict'
 
-// Cargamos los modelos para usarlos posteriormente
 var Component = require('../models/component');
+var validates = require('../middlewares/componentValidation.js');
+var errorG = require('../middlewares/generalError.js');
+var status = require('../middlewares/statusCodes.js')
+
+exports.component_create = async function (req, res) {
+
+    const { error } = validates.validate(req.body)
+    if (error) {
+        status.codes("400_Body", res, "POST", error, "/components")
+    } else {
+        let component = new Component(
+            {
+                name: req.body.name,
+                directory: req.body.directory,
+                description: req.body.description,
+                version: req.body.version
+
+            }
+        );
+        await component.save();
+        status.codes("201", res, "POST", component, "/components")
+    }
 
 
-
-
-exports.component_create = function (req, res) {
-    var component = new Component(
-        {
-            name: req.body.name,
-            directory: req.body.directory,
-            description: req.body.description,
-            version: req.body.version
-
-        }
-    );
-
-    component.save(function (err) {
-        if (err) {
-            return res.status(500).send({ message: 'Error en la petición1' });
-        }
-        return res.status(201).send({ component });
-    });
 };
 
+exports.getComponent = async function (req, res) {
+    const { error } = validates.validateGet(req.query)
+    if (error) {
+        status.codes("400", res, "GET", error, "/components")
+    } else {
+        var search_key = req.query;
 
-exports.getComponentbyId = function (req, res) {
+        var component = await Component.find(search_key);
+        status.codes("200", res, "GET", component, "/components")
+    }
 
+};
+
+exports.getComponentbyId = async function (req, res) {
     var componentId = req.params.id;
-
-
-    //buscar un documento por un  id
-    Component.findById(componentId, (err, component) => {
-        if (err) return res.status(500).send({ message: 'Error en la petición1' });
-
-        if (!component) return res.status(404).send({ message: 'EL componente no existe' });
-
-        return res.status(200).send({ component });
-
+    var bool;
+    var component = await Component.findById(componentId, (err, componen) => {
+        bool = errorG.errorG(res, "GET", err, componen);
     });
+    if (bool) {
+        status.codes("200", res, "GET", component, "/components/:id")
+    }
+
+
 }
 
-exports.getComponent = function (req, res) {//your code here
-
-    var search_key = req.query;
-
-    Component.find(search_key, function (err, component) {
-        if (err) return res.status(500).send({ message: 'Error en la petición1' });
-
-        if (!component) return res.status(404).send({ message: 'EL componente no existe' });
-
-        return res.status(200).send({ component });
-    });
-};
-
-exports.putComponent = function (req, res) {
-
+exports.putComponent = async function (req, res) {
     var componentId = req.params.id;
+    var body = req.body;
+    var bool;
 
-    Component.findOneAndUpdate(componentId, { $set: req.body }, function (err, component) {
-        if (err) return res.status(500).send({ message: 'Error en la petición1' });
-        return res.status(200).send({ component });
-    });
+    const { error } = validates.validateGet(body)
+    if (error) {
+        status.codes("400_Body", res, "PUT", error, "/components")
+    } else {
+        var component = await Component.findByIdAndUpdate(componentId, { $set: body }, (err, componen) => {
+            bool = errorG.errorG(res, "PUT", err, componen);
+        });
+        if (bool) {
+            status.codes("200_PUT", res, "PUT", component, "/components")
+        }
+
+    }
 };
 
 
 
-
-exports.deleteComponent = function (req, res) {
+exports.deleteComponent = async function (req, res) {
     var componentId = req.params.id;
-    Component.findByIdAndRemove(componentId, function (err) {
-        if (err) return res.status(204).send({ message: 'No content' });
-        return res.status(200).send({ message: 'Deleted successfully!' });
+    var bool;
+    await Component.findByIdAndDelete(componentId, (err, componen) => {
+        bool = errorG.errorG(res, "DELETE", err, componen);
+    });
+    if (bool) {
+        status.codes("200_DEL", res, "DELETE", null, "/components")
+    }
 
-    })
-};
+}
 
 
 

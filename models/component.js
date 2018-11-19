@@ -1,18 +1,30 @@
-'use strict';
+'use strict'
 
 
-var mongoose =  require('mongoose');
-
+var mongoose = require('mongoose');
+var Joi = require('joi')
 
 var Schema = mongoose.Schema;
 
 // Creamos el objeto del esquema de componentes y sus atributos
-var componentSchema = new Schema({
-    name: String,
-    directory: String,
-    description: String,
-    version: String
+var componentSchema = Schema({
+  name: {
+    type: String,
+    required: [true]
+  },
+  directory: {
+    type: String,
+    required: [true]
+  },
+  description: {
+    type: String,
+    required: [true]
+  },
+  version: {
+    type: String,
+    required: [true]
+  }
 });
 
-// Exportamos el modelo para usarlo en otros ficheros
+
 module.exports = mongoose.model('Component', componentSchema);

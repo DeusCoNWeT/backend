@@ -11,17 +11,19 @@ var app = express();
 // Importamos las rutas
 var component = require('./routes/component');
 var user = require('./routes/user');
+const error=require('./middlewares/error');
 //Configuramos bodyParser para que convierta el body de nuestras peticiones a JSON
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // Cargamos las rutas
 app.use('/api', component);
-app.use('/api', component);
+app.use('/api', user);
+app.use(error);
 // Ruta no espicificada
 
 app.all('*', (req, res, next) => {
-    var err = new Error('La ruta no es existe');
+    var err = new Error('La ruta indicada no existe');
     err.status = 404;
     next(err);
   });
