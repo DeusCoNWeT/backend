@@ -13,10 +13,6 @@ var api = express.Router();
 
 // Creamos una ruta para los métodos que tenemos en nuestros controladores
 
-// Get introductorio
-api.get('/', function(request, response){
-    response.send('You made it to the home page.')
-  });
 
 
 // POST COMPONENT
