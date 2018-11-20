@@ -11,6 +11,7 @@ var app = express();
 // Importamos las rutas
 var component = require('./routes/component');
 var user = require('./routes/user');
+var connection = require('./routes/interconnection');
 const error=require('./middlewares/error');
 //Configuramos bodyParser para que convierta el body de nuestras peticiones a JSON
 app.use(bodyParser.urlencoded({extended: false}));
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 // Cargamos las rutas
 app.use('/api', component);
 app.use('/api', user);
+app.use('/api',connection)
 app.use(error);
 // Ruta no espicificada
 

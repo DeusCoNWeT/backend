@@ -77,3 +77,23 @@
   version: 'asfsf',
   __v: 0 } |
 2018-11-19T20:28:41.847Z [error]: 	PUT| /components | Los campos del body no son correctos | ValidationError: "nam" is not allowed
+2018-11-20T18:23:41.222Z [error]: 	GET | /components/:id | El recurso no existe | null
+2018-11-20T18:24:02.062Z [error]: 	GET | /components/:id | El recurso no existe | null
+2018-11-20T18:24:12.283Z [error]: 	GET | /components/:id | El id proporcionado no es correcto | CastError: Cast to ObjectId failed for value "123" at path "_id" for model "Component"
+2018-11-20T18:24:25.781Z [info]: 	GET | /connection | La petición de los recurso/s fue correcta | { _id: 5bf4353d9873d91217d25ec7,
+  component_1: 'olaH',
+  component_2: 'dfsdgsds',
+  valor: 'sdg',
+  __v: 0 },{ _id: 5bf4354c9873d91217d25ec8,
+  component_1: '1234',
+  component_2: '1234',
+  valor: '2',
+  __v: 0 },{ _id: 5bf438e24ebd9a1322cf133f,
+  component_1: '5bd0baccb08017141b77e8dc',
+  component_2: '1234',
+  valor: '2',
+  __v: 0 },{ _id: 5bf43a28fe548a13e2990c63,
+  component_1: '5bd0baccb08017141b77e8dc',
+  component_2: '1234',
+  valor: '2',
+  __v: 0 } |

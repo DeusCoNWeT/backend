@@ -1,1 +1,4 @@
 2018-11-19T20:28:41.847Z [error]: 	PUT| /components | Los campos del body no son correctos | ValidationError: "nam" is not allowed
+2018-11-20T18:23:41.222Z [error]: 	GET | /components/:id | El recurso no existe | null
+2018-11-20T18:24:02.062Z [error]: 	GET | /components/:id | El recurso no existe | null
+2018-11-20T18:24:12.283Z [error]: 	GET | /components/:id | El id proporcionado no es correcto | CastError: Cast to ObjectId failed for value "123" at path "_id" for model "Component"
