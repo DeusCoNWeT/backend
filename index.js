@@ -18,9 +18,10 @@ var listen = `${conf.direction}:${node_port}`;
 // Le indicamos a Mongoose que haremos la conexión con Promesas
 mongoose.Promise = global.Promise;
 
+//mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true })
 
 // Usamos el método connect para conectarnos a nuestra base de datos
-mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true })
+mongoose.connect(`mongodb://mongo:${conf.mongo_port}/${conf.database}`,  { useNewUrlParser: true })
     .then(() => {
 
         // Cuando se realiza la conexión, lanzamos este mensaje por consola
