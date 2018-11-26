@@ -12,6 +12,7 @@ var app = express();
 var component = require('./routes/component');
 var user = require('./routes/user');
 var connection = require('./routes/interconnection');
+var analysis=require('./routes/analysis')
 const error=require('./middlewares/error');
 //Configuramos bodyParser para que convierta el body de nuestras peticiones a JSON
 app.use(bodyParser.urlencoded({extended: false}));
@@ -21,7 +22,9 @@ app.use(bodyParser.json());
 app.use('/api', component);
 app.use('/api', user);
 app.use('/api',connection)
+app.use('/api',analysis)
 app.use(error);
+
 // Ruta no espicificada
 
 app.all('*', (req, res, next) => {
