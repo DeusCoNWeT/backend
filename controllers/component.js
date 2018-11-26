@@ -6,20 +6,29 @@ var errorG = require('../middlewares/generalError.js');
 var status = require('../middlewares/statusCodes.js')
 
 exports.component_create = async function (req, res) {
-
+    var propert = []
     const { error } = validates.validate(req.body)
     if (error) {
         status.codes("400_Body", res, "POST", error, "/components")
     } else {
+        console.log(req.body.properties.name);
+        propert.push()
         let component = new Component(
             {
                 name: req.body.name,
                 directory: req.body.directory,
                 description: req.body.description,
-                version: req.body.version
-
+                version: req.body.version,
+                properties: {
+                    name: req.body.properties.name,
+                    Type: req.body.properties.Type,
+                    inPut: req.body.properties.inPut,
+                    outPut: req.body.properties.outPut,
+                    Default: req.body.properties.Default
+                }
             }
         );
+
         await component.save();
         status.codes("201", res, "POST", component, "/components")
     }

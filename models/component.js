@@ -23,6 +23,13 @@ var componentSchema = Schema({
   version: {
     type: String,
     required: [true]
+  },
+  properties:{
+    name: String,
+    Type: String,
+    inPut:String,
+    outPut:String,
+    Default:String
   }
 });
 
