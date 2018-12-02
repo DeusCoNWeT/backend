@@ -8,6 +8,8 @@ services:
       - '80:3800'
     links:
       - mongo
+    environment:
+      - NODE_ENV=production
   mongo:
     container_name: mongo
     image: mongo
