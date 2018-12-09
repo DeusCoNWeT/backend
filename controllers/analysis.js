@@ -41,7 +41,7 @@ exports.writeF = async function (req, res) {
     });
 
 };
-//TODO: operaciones CRUD /PUT le pasas id, añades objeto al array de objetos.
+
 exports.createAnalysis = async function (req, res) {
     const { error } = Analysis.validate(req.body)
     if (error) {
