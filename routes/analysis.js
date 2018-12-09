@@ -3,6 +3,7 @@
 
 var express = require('express');
 var asyncMiddleware = require('../middlewares/async');
+var validateId=require('../middlewares/validateObjectId')
 
 var AnalysisController = require('../controllers/analysis');
 

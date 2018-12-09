@@ -2,3 +2,4 @@
 2018-11-20T18:23:41.222Z [error]: 	GET | /components/:id | El recurso no existe | null
 2018-11-20T18:24:02.062Z [error]: 	GET | /components/:id | El recurso no existe | null
 2018-11-20T18:24:12.283Z [error]: 	GET | /components/:id | El id proporcionado no es correcto | CastError: Cast to ObjectId failed for value "123" at path "_id" for model "Component"
+2018-12-09T17:18:24.162Z [error]: 	GET | /components/5bf9afa40845277fe67f88c | El id proporcionado no es correcto | The paremeter 'id' is not valid

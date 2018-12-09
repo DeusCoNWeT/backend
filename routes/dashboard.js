@@ -3,6 +3,7 @@
 
 var express = require('express');
 var asyncMiddleware = require('../middlewares/async');
+var validateId=require('../middlewares/validateObjectId')
 
 var DashboardController = require('../controllers/dashboards');
 
@@ -17,8 +18,8 @@ var api = express.Router();
 // POST COMPONENT
 api.post('/dashboard',asyncMiddleware(DashboardController.dashboard_create));
 api.get('/dashboard',asyncMiddleware(DashboardController.getDashboard));
-api.get('/dashboard/:id',asyncMiddleware(DashboardController.getDashboardId));
-api.put('/dashboard/:id',asyncMiddleware(DashboardController.putDashboard));
-api.delete('/dashboard/:id',asyncMiddleware(DashboardController.deleteDashboard));
+api.get('/dashboard/:id',validateId,asyncMiddleware(DashboardController.getDashboardId));
+api.put('/dashboard/:id',validateId,asyncMiddleware(DashboardController.putDashboard));
+api.delete('/dashboard/:id',validateId,asyncMiddleware(DashboardController.deleteDashboard));
 
 module.exports = api;

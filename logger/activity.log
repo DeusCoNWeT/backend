@@ -97,3 +97,13 @@
   component_2: '1234',
   valor: '2',
   __v: 0 } |
+2018-12-09T17:18:21.016Z [info]: 	GET | /components/:id | La petición de los recurso/s fue correcta | { properties: 
+   [ { _id: 5bf9afa40845277fe67f88cd },
+     { _id: 5bf9afa40845277fe67f88cc } ],
+  _id: 5bf9afa40845277fe67f88cb,
+  name: 'nombre',
+  directory: 'prueba1',
+  description: 'prueba1',
+  version: '1',
+  __v: 0 } |
+2018-12-09T17:18:24.162Z [error]: 	GET | /components/5bf9afa40845277fe67f88c | El id proporcionado no es correcto | The paremeter 'id' is not valid

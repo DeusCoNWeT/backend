@@ -5,6 +5,7 @@ var express = require('express');
 var asyncMiddleware = require('../middlewares/async');
 // Cargamos el controlador
 var ComponentController = require('../controllers/component');
+var validateId=require('../middlewares/validateObjectId')
 
 // Llamamos al router
 var api = express.Router();
@@ -29,15 +30,15 @@ api.get('/components', asyncMiddleware(ComponentController.getComponent));
 
 
 //GET COMPONENT BY ID
-api.get('/components/:id', asyncMiddleware(ComponentController.getComponentbyId));
+api.get('/components/:id',validateId, asyncMiddleware(ComponentController.getComponentbyId));
 
 
 //UPDATE COMPONENT
-api.put('/components/:id', asyncMiddleware(ComponentController.putComponent));
+api.put('/components/:id',validateId, asyncMiddleware(ComponentController.putComponent));
 
 
 //Delete
-api.delete('/components/:id',asyncMiddleware(ComponentController.deleteComponent));
+api.delete('/components/:id',validateId,asyncMiddleware(ComponentController.deleteComponent));
 
 
 api.get('/random', ComponentController.getRandomComponent);
