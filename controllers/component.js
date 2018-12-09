@@ -1,13 +1,12 @@
 'use strict'
 
 var Component = require('../models/component');
-var validates = require('../middlewares/componentValidation.js');
 var errorG = require('../middlewares/generalError.js');
 var status = require('../middlewares/statusCodes.js')
 
 exports.component_create = async function (req, res) {
     var propert = []
-    const { error } = validates.validate(req.body)
+    const { error } = Component.validate(req.body)
     if (error) {
         status.codes("400_Body", res, "POST", error, "/components")
     } else {
@@ -37,7 +36,7 @@ exports.component_create = async function (req, res) {
 };
 
 exports.getComponent = async function (req, res) {
-    const { error } = validates.validateGet(req.query)
+    const { error } = Component.validateGet(req.query)
     if (error) {
         status.codes("400", res, "GET", error, "/components")
     } else {
@@ -67,7 +66,7 @@ exports.putComponent = async function (req, res) {
     var body = req.body;
     var bool;
 
-    const { error } = validates.validateGet(body)
+    const { error } = Component.validateGet(body)
     if (error) {
         status.codes("400_Body", res, "PUT", error, "/components")
     } else {
