@@ -107,3 +107,16 @@
   version: '1',
   __v: 0 } |
 2018-12-09T17:18:24.162Z [error]: 	GET | /components/5bf9afa40845277fe67f88c | El id proporcionado no es correcto | The paremeter 'id' is not valid
+2018-12-09T19:16:42.496Z [info]: 	PUT | /analysis/:id | El recurso se ha actualizado correctamente | { _id: 5c0d54b1d544b01a0c7a59c7,
+  Objects: 
+   [ { Type: 'hola' },
+     { object: [Object], Type: 'hola' },
+     { object: [Object], Type: 'hola' },
+     { object: [Object], Type: 'hola' },
+     { object: [Object], Type: 'hola' },
+     { object: [Object], Type: 'hola' },
+     { object: [Object], Type: 'hola' },
+     { object: [Object], Type: 'hola' },
+     { object: [Object], Type: 'hola' },
+     { object: [Object], Type: 'hola' } ],
+  __v: 0 } |
