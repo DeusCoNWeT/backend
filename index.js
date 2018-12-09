@@ -37,3 +37,33 @@ mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true})
     })
     // Si no se conecta correctamente devolvemos el error
     .catch(err => console.log(err));
+
+    /*
+   var fs = require('fs');
+
+    var key = fs.readFileSync('/etc/ssl/mongodb-cert.crt');
+    var key2 = fs.readFileSync('/etc/ssl/mongodb-cert.key');
+    var ca = [fs.readFileSync('/etc/ssl/mongodb.pem')];
+    const options = {
+            useNewUrlParser: true,
+            sslValidate: true,
+            sslCA: ca,
+            sslKey: key2,
+            sslCert:key,
+            checkServerIdentity:false
+    }
+    
+    mongoose.connect(`mongodb://${mongo_conection}?ssl=true`,options)
+        .then(() => {
+    
+            // Cuando se realiza la conexión, lanzamos este mensaje por consola
+            console.log("La conexión a la base de datos dashboards se ha realizado correctamente")
+    
+            // CREAR EL SERVIDOR WEB CON NODEJS
+            app.listen(node_port, () => {
+                console.log(`servidor corriendo en https://${listen}`);
+            });
+        })
+        // Si no se conecta correctamente devolvemos el error
+        .catch(err => console.log(err));
+    */
