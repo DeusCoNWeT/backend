@@ -9,7 +9,7 @@ exports.component_create = async function (req, res) {
     var propert = []
     const { error } = Component.validate(req.body)
     if (error) {
-        status.codes("400_Body", res, "POST", error, "/components")
+        status.codes("400_Body", res, req.method, error, req.url)
     } else {
 
         let component = new Component(
@@ -29,7 +29,7 @@ exports.component_create = async function (req, res) {
         );
 
         await component.save();
-        status.codes("201", res, "POST", component, "/components")
+        status.codes("201", res, req.method, component, req.url)
     }
 
 
@@ -38,12 +38,12 @@ exports.component_create = async function (req, res) {
 exports.getComponent = async function (req, res) {
     const { error } = Component.validateGet(req.query)
     if (error) {
-        status.codes("400", res, "GET", error, "/components")
+        status.codes("400", res, req.method, error, req.url)
     } else {
         var search_key = req.query;
 
         var component = await Component.find(search_key);
-        status.codes("200", res, "GET", component, "/components")
+        status.codes("200", res, req.method, component, req.url)
     }
 
 };
@@ -52,10 +52,10 @@ exports.getComponentbyId = async function (req, res) {
     var componentId = req.params.id;
     var bool;
     var component = await Component.findById(componentId, (err, componen) => {
-        bool = errorG.errorG(res, "GET", err, componen);
+        bool = errorG.errorG(res, req.method, err, componen);
     });
     if (bool) {
-        status.codes("200", res, "GET", component, "/components/:id")
+        status.codes("200", res, req.method, component, req.url)
     }
 
 
@@ -68,13 +68,13 @@ exports.putComponent = async function (req, res) {
 
     const { error } = Component.validateGet(body)
     if (error) {
-        status.codes("400_Body", res, "PUT", error, "/components")
+        status.codes("400_Body", res, req.method, error, req.url)
     } else {
         var component = await Component.findByIdAndUpdate(componentId, { $set: body }, (err, componen) => {
-            bool = errorG.errorG(res, "PUT", err, componen);
+            bool = errorG.errorG(res, req.method, err, componen);
         });
         if (bool) {
-            status.codes("200_PUT", res, "PUT", component, "/components")
+            status.codes("200_PUT", res, req.method, component, req.url)
         }
 
     }
@@ -86,10 +86,10 @@ exports.deleteComponent = async function (req, res) {
     var componentId = req.params.id;
     var bool;
     await Component.findByIdAndDelete(componentId, (err, componen) => {
-        bool = errorG.errorG(res, "DELETE", err, componen);
+        bool = errorG.errorG(res, req.method, err, componen);
     });
     if (bool) {
-        status.codes("200_DEL", res, "DELETE", null, "/components")
+        status.codes("200_DEL", res, req.method, null, req.url)
     }
 
 }
@@ -122,5 +122,5 @@ exports.BVA = async function (req, res) {
     }
 
 
-    status.codes("200", res, "GET", versions, "/BVA")
+    status.codes("200", res, req.method, versions, req.url)
 }

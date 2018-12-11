@@ -11,7 +11,7 @@ exports.dashboard_create = async function (req, res) {
     var objComb=[]
     const { error } = Dashboard.validate(req.body)
     if (error) {
-        status.codes("400_Body", res, "POST", error, "/dashboard")
+        status.codes("400_Body", res, req.method, error, req.url)
     } else {
         var long = req.body.combination.length;
         component_IDs.push(req.body.component_1);
@@ -21,7 +21,7 @@ exports.dashboard_create = async function (req, res) {
         }
         while (bool && i < long) {
             await Component.findById(component_IDs[i], (err, dash) => {
-                bool = errorG.errorG(res, "GET", err, dash);
+                bool = errorG.errorG(res, req.method, err, dash);
             });
             i++;
         }
@@ -34,7 +34,7 @@ exports.dashboard_create = async function (req, res) {
                 }
             );
             await dashboard.save();
-            status.codes("201", res, "POST", dashboard, "/dashboard")
+            status.codes("201", res, req.method, dashboard, req.url)
         }
     }
 };
@@ -43,7 +43,7 @@ exports.getDashboard = async function (req, res) {
     console.log(req.query)
     const { error } = Dashboard.validateGet(req.query)
     if (error) {
-        status.codes("400", res, "GET", error, "/dashboard")
+        status.codes("400", res, req.method, error, req.url)
     } else {
         var search_key = req.query;
 
@@ -54,7 +54,7 @@ exports.getDashboard = async function (req, res) {
                 property: "campo1"
             }}});
 */
-        status.codes("200", res, "GET", dashboard, "/dashboard")
+        status.codes("200", res, req.method, dashboard, req.url)
     }
     
 
@@ -64,10 +64,10 @@ exports.getDashboardId = async function (req, res) {
     var connectionId = req.params.id;
     var bool;
     var dashboard = await Dashboard.findById(connectionId, (err, dash) => {
-        bool = errorG.errorG(res, "GET", err, dash);
+        bool = errorG.errorG(res, req.method, err, dash);
     });
     if (bool) {
-        status.codes("200", res, "GET", dashboard, "/dashboard/:id")
+        status.codes("200", res, req.method, dashboard, req.url)
     }
 
 
@@ -76,10 +76,10 @@ exports.deleteDashboard = async function (req, res) {
     var connectionId = req.params.id;
     var bool;
     await Dashboard.findByIdAndDelete(connectionId, (err, dash) => {
-        bool = errorG.errorG(res, "DELETE", err, dash);
+        bool = errorG.errorG(res, req.method, err, dash);
     });
     if (bool) {
-        status.codes("200_DEL", res, "DELETE", null, "/dashboard")
+        status.codes("200_DEL", res, req.method, null, req.url)
     }
 
 }
@@ -92,7 +92,7 @@ exports.putDashboard = async function (req, res) {
 
     const { error } = Connection.validateGet(body)
     if (error) {
-        status.codes("400_Body", res, "PUT", error, "/connection")
+        status.codes("400_Body", res, req.method, error, req.url)
     } else {
         if(body.component_1) component_IDs.push(req.body.component_1);
         if(body.combination){
@@ -106,16 +106,16 @@ exports.putDashboard = async function (req, res) {
         } 
         while (bool && i < component_IDs.length()) {
             await Component.findById(component_IDs[i], (err, dash) => {
-                bool = errorG.errorG(res, "GET", err, dash);
+                bool = errorG.errorG(res, req.method, err, dash);
             });
             i++;
         }
         if(bool){
             var dashboard = await Dashboard.findByIdAndUpdate(componentId, { $set: body }, (err, dash) => {
-                bool = errorG.errorG(res, "PUT", err, dash);
+                bool = errorG.errorG(res, req.method, err, dash);
             });
             if (bool) {
-                status.codes("200_PUT", res, "PUT", dashboard, "/dashboard")
+                status.codes("200_PUT", res, req.method, dashboard, req.url)
             }
     
         }
