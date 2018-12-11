@@ -41,7 +41,7 @@ api.put('/components/:id',validateId, asyncMiddleware(ComponentController.putCom
 api.delete('/components/:id',validateId,asyncMiddleware(ComponentController.deleteComponent));
 
 
-api.get('/random', ComponentController.getRandomComponent);
+api.get('/BVA', asyncMiddleware(ComponentController.BVA));
 
 
 // Exportamos la configuración

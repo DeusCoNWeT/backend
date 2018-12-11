@@ -120,3 +120,6 @@
      { object: [Object], Type: 'hola' },
      { object: [Object], Type: 'hola' } ],
   __v: 0 } |
+2018-12-11T18:39:55.463Z [info]: 	GET | /BVA | La petición de los recurso/s fue correcta | 1,1,1,1,1 |
+2018-12-11T18:39:56.968Z [info]: 	GET | /BVA | La petición de los recurso/s fue correcta | 2,3,2,3,2 |
+2018-12-11T18:39:57.699Z [info]: 	GET | /BVA | La petición de los recurso/s fue correcta | 1,1,1,1,3 |

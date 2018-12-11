@@ -3,15 +3,15 @@
 var Component = require('../models/component');
 var errorG = require('../middlewares/generalError.js');
 var status = require('../middlewares/statusCodes.js')
-
+const BVA = require('../middlewares/bva.js');
+const bva = new BVA.BVA();
 exports.component_create = async function (req, res) {
     var propert = []
     const { error } = Component.validate(req.body)
     if (error) {
         status.codes("400_Body", res, "POST", error, "/components")
     } else {
-        console.log(req.body.properties.name);
-        propert.push()
+
         let component = new Component(
             {
                 name: req.body.name,
@@ -94,28 +94,33 @@ exports.deleteComponent = async function (req, res) {
 
 }
 
+global.init = 0;
+
+exports.BVA = async function (req, res) {
+
+    var version = ["1", "2", "3"]
+    var componentNames = []
+    var component = await Component.find();
+    component.forEach(element => {
+        componentNames.push(element.name)
+    });
+    ///GET ALL COMPONENTS
+    if (global.init == 0) {
+        bva.init(componentNames, version);
+        global.init = 1
+    }
 
 
-//Metodo con random, analizando BVA
-exports.getRandomComponent = function (req, res) {
+    var versions = bva.getNewVersion();
+    var i = 0;
+    for (let j = 0; j < component.length; j++) {
 
-    var count = Component.count();
+        var updateObject = { version: versions[i] }
 
-    var random = Math.floor(Math.random() * 5)
-    var count1 = 1;
+        var component2 = await Component.findByIdAndUpdate(component[j].id, { $set: updateObject })
 
-    Component.findOne().skip(random).exec(
-        function (err, result) {
-
-            return res.status(200).send({ result });
-        })
+    }
 
 
+    status.codes("200", res, "GET", versions, "/BVA")
 }
-
-
-
-
-
-
-
