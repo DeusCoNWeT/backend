@@ -11,8 +11,9 @@ var app = express();
 // Importamos las rutas
 var component = require('./routes/component');
 var user = require('./routes/user');
-var analysis=require('./routes/analysis')
-var dashboard=require('./routes/dashboard')
+var analysis=require('./routes/analysis');
+var dashboard=require('./routes/dashboard');
+var analyzer=require('./routes/polymer-analyzer');
 const error=require('./middlewares/error');
 //Configuramos bodyParser para que convierta el body de nuestras peticiones a JSON
 app.use(bodyParser.urlencoded({extended: false}));
@@ -21,8 +22,9 @@ app.use(bodyParser.json());
 // Cargamos las rutas
 app.use('/api', component);
 app.use('/api', user);
-app.use('/api',analysis)
-app.use('/api',dashboard)
+app.use('/api',analysis);
+app.use('/api',dashboard);
+app.use('/api',analyzer);
 app.use(error);
 
 // Ruta no espicificada

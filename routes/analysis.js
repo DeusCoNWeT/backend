@@ -13,8 +13,8 @@ var api = express.Router();
 
 
 // POST COMPONENT
-api.post('/analysis/:fichero',asyncMiddleware(AnalysisController.writeF));
-api.post('/analysisController',asyncMiddleware(AnalysisController.createAnalysis));
+api.post('/analysisFichero/:fichero',asyncMiddleware(AnalysisController.writeF));
+api.post('/analysis',asyncMiddleware(AnalysisController.createAnalysis));
 
 api.get('/analysis',asyncMiddleware(AnalysisController.getAnalysis));
 api.get('/analysis/:id',validateId,asyncMiddleware(AnalysisController.getAnalysisId));
