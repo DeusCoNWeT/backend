@@ -5,7 +5,7 @@ var server;
 process.env.NODE_ENV="test";
 
 describe('/api/components',() =>{
-beforeEach(()=>{server =require('../index')})
+beforeEach(()=>{server =require('../../index')})
 afterEach(()=>{server.close();})
 
 describe('GET /',()=>{

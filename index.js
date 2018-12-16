@@ -8,34 +8,37 @@ var mongoose = require('mongoose');
 var app = require('./app');
 
 // Creamos la variable PORT para indicar el puerto en el que va a funcionar el servidor
-const config= require('./config.json');
+const config = require('./config.json');
 
 //Tomamos los valores del fichero de configuración
-var conf=config.development;
+var conf = config.development;
 var node_port = conf.node_port;
-var mongo_conection=`:${conf.mongo_port}/${conf.database}`;
-var listen= `${conf.direction}:${node_port}`;
+var mongo_conection = `:${conf.mongo_port}/${conf.database}`;
+var listen = `${conf.direction}:${node_port}`;
 // Le indicamos a Mongoose que haremos la conexión con Promesas
 mongoose.Promise = global.Promise;
-
 // Usamos el método connect para conectarnos a nuestra base de datos
-if(process.env.NODE_ENV=="production"){
-    mongo_conection= conf.directionProduction + mongo_conection;
-}else if(process.env.NODE_ENV=="test"){
+if (process.env.NODE_ENV == "production") {
+    mongo_conection = conf.directionProduction + mongo_conection;
+} else if (process.env.NODE_ENV == "test") {
     console.log("HOLA")
-    mongo_conection= conf.direction + mongo_conection;
-}else{
-    mongo_conection= conf.direction + mongo_conection;
+    mongo_conection = conf.direction + mongo_conection;
+} else {
+    mongo_conection = conf.direction + mongo_conection;
 }
-mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true})
+mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true })
     .then(() => {
         // Cuando se realiza la conexión, lanzamos este mensaje por consola
         console.log("La conexión a la base de datos dashboards se ha realizado correctamente")
 
         // CREAR EL SERVIDOR WEB CON NODEJS
-        app.listen(node_port, () => {
-            console.log(`servidor corriendo en http://${listen}`);
-        });
+
     })
     // Si no se conecta correctamente devolvemos el error
     .catch(err => console.log(err));
+
+const server = app.listen(node_port, () => {
+    console.log(`servidor corriendo en http://${listen}`);
+});
+
+module.exports = server;
