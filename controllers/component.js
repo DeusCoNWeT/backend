@@ -3,8 +3,10 @@
 var Component = require('../models/component');
 var errorG = require('../middlewares/generalError.js');
 var status = require('../middlewares/statusCodes.js')
-const BVA = require('../middlewares/bva.js');
+const BVA = require('../models/bva.js');
 const bva = new BVA.BVA();
+const conf=require('../config/dataComponents.json');
+
 exports.component_create = async function (req, res) {
     var propert = []
     const { error } = Component.validate(req.body)
@@ -98,7 +100,7 @@ global.init = 0;
 
 exports.BVA = async function (req, res) {
 
-    var version = ["1", "2", "3"]
+    var version = conf.versions;
     var componentNames = []
     var component = await Component.find();
     component.forEach(element => {

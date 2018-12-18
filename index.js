@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var app = require('./app');
 
 // Creamos la variable PORT para indicar el puerto en el que va a funcionar el servidor
-const config = require('./config.json');
+const config = require('./config/config.json');
 
 //Tomamos los valores del fichero de configuración
 var conf = config.development;
