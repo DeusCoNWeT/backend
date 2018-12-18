@@ -1,17 +1,29 @@
-class BVA{
-    constructor(){
+const Component = require('../models/component');
+const conf=require('../config/data.json');
+
+class BVA {
+    constructor() {
         this.components = [];
-        this.combinations= [];
+        this.combinations = [];
         this.versions = [];
         this.times_called = 0;
         this.v_components = [];
 
-       
+      
+        this._init();
+
+
     }
-        init(components, versions) {
-            this.components = components
-            this.versions = versions
-    
+    async _init() {
+        var versions = conf.versions;
+        var components = []
+        var component = await Component.find();
+        component.forEach(element => {
+            components.push(element.name)
+        });
+        this.components = components
+        this.versions = versions
+
         components.forEach(element => {
             this.v_components.push(versions.slice(0))
         });
@@ -19,7 +31,7 @@ class BVA{
     }
     getNewVersion() {
         var lng = this.combinations.length;
-        
+
         var versions = [];
         var vers;
         if (this.times_called < lng) {
@@ -32,7 +44,7 @@ class BVA{
             }
         }
         this.times_called++;
-    
+
         return versions;
     }
     randomVersion(component) {
@@ -41,13 +53,13 @@ class BVA{
         }
         var versions_component = this.v_components[component];
         var version = versions_component[(component + this.times_called) % versions_component.length]
-    
+
         var num = versions_component.indexOf(version)
-    
+
         versions_component.splice(num, 1);
         return version;
     }
-    
+
     generateCombinations() {
         var combinations = [];
         var nComponents = this.components.length;
@@ -55,15 +67,15 @@ class BVA{
         var goodVersion = head;
         var nonGoodVersion = rest;
         var times_iterated = 0;
-    
+
         while (nComponents > times_iterated) {
             var count = nComponents - times_iterated;
-    
+
             var good_Version = new Array(nComponents);
             var bad_Version = new Array(nComponents)
             for (let i = 0; i < nComponents; i++) {
                 if (i < count) {
-    
+
                     good_Version[i] = goodVersion;
                     bad_Version[i] = this.randomBadVersions(i, times_iterated, nonGoodVersion)
                 } else {
@@ -77,7 +89,7 @@ class BVA{
         }
         return combinations;
     }
-    
+
     randomBadVersions(component, count, nonGoodVersion) {
         var versions_component = this.v_components[component];
         var num = versions_component.indexOf('1')
@@ -98,7 +110,7 @@ class BVA{
         var num2 = upgrade.indexOf(version)
         upgrade.splice(num2, 1);
         return version
-    
+
     }
 }
-module.exports.BVA=BVA;
+module.exports.BVA = BVA;

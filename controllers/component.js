@@ -5,7 +5,7 @@ var errorG = require('../middlewares/generalError.js');
 var status = require('../middlewares/statusCodes.js')
 const BVA = require('../models/bva.js');
 const bva = new BVA.BVA();
-const conf=require('../config/data.json');
+
 
 exports.component_create = async function (req, res) {
     var propert = []
@@ -99,22 +99,13 @@ exports.deleteComponent = async function (req, res) {
 global.init = 0;
 
 exports.BVA = async function (req, res) {
-
-    var version = conf.versions;
-    var componentNames = []
-    var component = await Component.find();
-    component.forEach(element => {
-        componentNames.push(element.name)
-    });
-    ///GET ALL COMPONENTS
-    if (global.init == 0) {
-        bva.init(componentNames, version);
-        global.init = 1
-    }
+ 
+    
 
 
     var versions = bva.getNewVersion();
     var i = 0;
+    /*
     for (let j = 0; j < component.length; j++) {
 
         var updateObject = { version: versions[i] }
@@ -122,7 +113,7 @@ exports.BVA = async function (req, res) {
         var component2 = await Component.findByIdAndUpdate(component[j].id, { $set: updateObject })
 
     }
-
+*/
 
     status.codes("200", res, req.method, versions, req.url)
 }
