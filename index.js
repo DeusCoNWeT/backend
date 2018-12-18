@@ -21,7 +21,6 @@ mongoose.Promise = global.Promise;
 if (process.env.NODE_ENV == "production") {
     mongo_conection = conf.directionProduction + mongo_conection;
 } else if (process.env.NODE_ENV == "test") {
-    console.log("HOLA")
     mongo_conection = conf.direction + mongo_conection;
 } else {
     mongo_conection = conf.direction + mongo_conection;
@@ -30,13 +29,17 @@ mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true })
     .then(() => {
         // Cuando se realiza la conexión, lanzamos este mensaje por consola
         console.log("La conexión a la base de datos dashboards se ha realizado correctamente")
-
-        // CREAR EL SERVIDOR WEB CON NODEJS
+     
+        
 
     })
     // Si no se conecta correctamente devolvemos el error
-    .catch(err => console.log(err));
-
+    .catch(err => {
+        console.log(err);
+        server.close()
+    })
+    
+// CREAR EL SERVIDOR WEB CON NODEJS
 const server = app.listen(node_port, () => {
     console.log(`servidor corriendo en http://${listen}`);
 });
