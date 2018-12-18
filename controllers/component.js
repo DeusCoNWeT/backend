@@ -5,7 +5,7 @@ var errorG = require('../middlewares/generalError.js');
 var status = require('../middlewares/statusCodes.js')
 const BVA = require('../models/bva.js');
 const bva = new BVA.BVA();
-const conf=require('../config/dataComponents.json');
+const conf=require('../config/data.json');
 
 exports.component_create = async function (req, res) {
     var propert = []

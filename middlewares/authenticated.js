@@ -2,7 +2,8 @@
 
 var jwt = require('jwt-simple');
 var moment = require('moment');
-var secret = 'clave';
+const conf=require('../config/data.json')
+var secret = conf.secretKey;
 
 exports.ensureAuth = function (req, res, next) {
     if (!req.headers.authorization) {
