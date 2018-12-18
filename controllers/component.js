@@ -102,10 +102,10 @@ exports.BVA = async function (req, res) {
  
     
 
-
+    var component=bva.allComponents
     var versions = bva.getNewVersion();
     var i = 0;
-    /*
+    
     for (let j = 0; j < component.length; j++) {
 
         var updateObject = { version: versions[i] }
@@ -113,7 +113,7 @@ exports.BVA = async function (req, res) {
         var component2 = await Component.findByIdAndUpdate(component[j].id, { $set: updateObject })
 
     }
-*/
+
 
     status.codes("200", res, req.method, versions, req.url)
 }

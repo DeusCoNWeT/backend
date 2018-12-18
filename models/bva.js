@@ -8,10 +8,8 @@ class BVA {
         this.versions = [];
         this.times_called = 0;
         this.v_components = [];
-
-      
-        this._init();
-
+        this.allComponents=this._init();
+        
 
     }
     async _init() {
@@ -28,6 +26,7 @@ class BVA {
             this.v_components.push(versions.slice(0))
         });
         this.combinations = this.generateCombinations();
+        return component;
     }
     getNewVersion() {
         var lng = this.combinations.length;
