@@ -1,5 +1,5 @@
 const Component = require('../models/component');
-const conf=require('../config/data.json');
+const conf = require('../config/data.json');
 
 class BVA {
     constructor() {
@@ -8,9 +8,11 @@ class BVA {
         this.versions = [];
         this.times_called = 0;
         this.v_components = [];
-        this.allComponents=this._init();
-        
+        this._init();
 
+    }
+    getComponents() {
+        return this.allComponents;
     }
     async _init() {
         var versions = conf.versions;
@@ -26,7 +28,8 @@ class BVA {
             this.v_components.push(versions.slice(0))
         });
         this.combinations = this.generateCombinations();
-        return component;
+        //To Access components later
+        this.allComponents = component;
     }
     getNewVersion() {
         var lng = this.combinations.length;

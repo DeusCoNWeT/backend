@@ -99,21 +99,28 @@ exports.deleteComponent = async function (req, res) {
 global.init = 0;
 
 exports.BVA = async function (req, res) {
- 
-    
 
-    var component=bva.allComponents
+
+    var newComponents=[];
+    var component = bva.allComponents
     var versions = bva.getNewVersion();
     var i = 0;
-    
     for (let j = 0; j < component.length; j++) {
+        console.log(component[j].directory)
+        var vers = component[j].directory.split('-')
+        var newDirectory = vers[0] + "-" + versions[i]
 
-        var updateObject = { version: versions[i] }
+
+        var updateObject = {
+            version: versions[i],
+            directory: newDirectory
+        }
 
         var component2 = await Component.findByIdAndUpdate(component[j].id, { $set: updateObject })
+        newComponents.push(component2)        
 
     }
 
 
-    status.codes("200", res, req.method, versions, req.url)
+    status.codes("200", res, req.method, newComponents, req.url)
 }

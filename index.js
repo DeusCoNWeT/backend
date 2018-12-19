@@ -29,8 +29,6 @@ mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true })
     .then(() => {
         // Cuando se realiza la conexión, lanzamos este mensaje por consola
         console.log("La conexión a la base de datos dashboards se ha realizado correctamente")
-     
-        
 
     })
     // Si no se conecta correctamente devolvemos el error
@@ -38,7 +36,7 @@ mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true })
         console.log(err);
         server.close()
     })
-    
+
 // CREAR EL SERVIDOR WEB CON NODEJS
 const server = app.listen(node_port, () => {
     console.log(`servidor corriendo en http://${listen}`);
