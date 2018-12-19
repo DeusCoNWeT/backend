@@ -96,7 +96,7 @@ exports.deleteComponent = async function (req, res) {
 
 }
 
-global.init = 0;
+
 
 exports.BVA = async function (req, res) {
 
