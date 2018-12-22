@@ -11,24 +11,32 @@ var app = require('./app');
 const config = require('./config/config.json');
 
 //Tomamos los valores del fichero de configuración
-var conf = config.development;
-var node_port = conf.node_port;
-var mongo_conection = `:${conf.mongo_port}/${conf.database}`;
-var listen = `${conf.direction}:${node_port}`;
+var conf;
+var node_port;
+var mongo_conection;
+var listen;
+var database;
+
+if (process.env.NODE_ENV == "production") {
+    conf = config.production;
+} else if (process.env.NODE_ENV == "test") {
+    conf = config.test;
+} else {
+    conf = config.development;
+}
+node_port = conf.node_port;
+mongo_conection = `${conf.direction}:${conf.mongo_port}/${conf.database}`;
+listen = `${conf.direction}:${node_port}`;
+database = conf.database;
+
 // Le indicamos a Mongoose que haremos la conexión con Promesas
 mongoose.Promise = global.Promise;
 // Usamos el método connect para conectarnos a nuestra base de datos
-if (process.env.NODE_ENV == "production") {
-    mongo_conection = conf.directionProduction + mongo_conection;
-} else if (process.env.NODE_ENV == "test") {
-    mongo_conection = conf.direction + mongo_conection;
-} else {
-    mongo_conection = conf.direction + mongo_conection;
-}
+
 mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true })
     .then(() => {
         // Cuando se realiza la conexión, lanzamos este mensaje por consola
-        console.log("La conexión a la base de datos dashboards se ha realizado correctamente")
+        console.log('La conexión a la base de datos ' + database + ' se ha realizado correctamente')
 
     })
     // Si no se conecta correctamente devolvemos el error
