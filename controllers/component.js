@@ -100,7 +100,6 @@ exports.deleteComponent = async function (req, res) {
 
 exports.BVA = async function (req, res) {
 
-
     var newComponents=[];
     var component = bva.allComponents
     var versions = bva.getNewVersion();
@@ -120,7 +119,6 @@ exports.BVA = async function (req, res) {
         newComponents.push(component2)        
 
     }
-
 
     status.codes("200", res, req.method, newComponents, req.url)
 }
