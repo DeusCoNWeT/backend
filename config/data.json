@@ -1,4 +1,7 @@
 {
     "versions":["V1","V2","V3"],
-    "secretKey":"clave"
+    "secretKey":"clave",
+    "domain":"dashboard.com",
+    "versionAPI":"V1",
+    "apiSubDomain":"api"
 }

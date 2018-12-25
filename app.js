@@ -4,7 +4,7 @@
 // Cargamos los módulos de express y body-parser
 var express = require('express');
 var bodyParser = require('body-parser');
-
+var conf=require('./config/data.json');
 // Llamamos a express para poder crear el servidor
 var app = express();
 
@@ -15,16 +15,19 @@ var analysis=require('./routes/analysis');
 var dashboard=require('./routes/dashboard');
 var analyzer=require('./routes/polymer-analyzer');
 const error=require('./middlewares/error');
+
+var version=conf.versionAPI;
+var domain=`/${conf.domain}/${version}/${conf.apiSubDomain}`;
 //Configuramos bodyParser para que convierta el body de nuestras peticiones a JSON
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // Cargamos las rutas
-app.use('/api', component);
-app.use('/api', user);
-app.use('/api',analysis);
-app.use('/api',dashboard);
-app.use('/api',analyzer);
+app.use(domain, component);
+app.use(domain, user);
+app.use(domain,analysis);
+app.use(domain,dashboard);
+app.use(domain,analyzer);
 app.use(error);
 
 // Ruta no espicificada
