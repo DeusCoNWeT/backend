@@ -1,8 +1,6 @@
 'use strict'
 var Component = require('../models/component');
 var Dashboard = require('../models/dashboards');
-var errorG = require('../middlewares/generalError.js');
-var status = require('../middlewares/statusCodes.js')
 var handleR = require('./handlerResponse.js')
 
 class dashboard extends handleR {
@@ -16,7 +14,7 @@ class dashboard extends handleR {
         var objComb = []
         const { error } = Dashboard.validate(req.body)
         if (error) {
-            status.codes("400_Body", res, req.method, error, req.url)
+            super.bodyNOK(res, req, error);
         } else {
             var long = req.body.combination.length;
             component_IDs.push(req.body.component_1);
@@ -26,7 +24,7 @@ class dashboard extends handleR {
             }
             while (bool && i < long) {
                 await Component.findById(component_IDs[i], (err, dash) => {
-                    bool = errorG.errorG(res, req.method, err, dash);
+                    bool = super.errorG(res, req, err, dash);
                 });
                 i++;
             }
@@ -39,7 +37,7 @@ class dashboard extends handleR {
                     }
                 );
                 await dashboard.save();
-                status.codes("201", res, req.method, dashboard, req.url)
+                super.postOK(res, req, dashboard);
             }
         }
     };
@@ -48,7 +46,7 @@ class dashboard extends handleR {
         console.log(req.query)
         const { error } = Dashboard.validateGet(req.query)
         if (error) {
-            status.codes("400", res, req.method, error, req.url)
+            super.parametersNOK(res, req, error)
         } else {
             var search_key = req.query;
 
@@ -59,7 +57,7 @@ class dashboard extends handleR {
                      property: "campo1"
                  }}});
      */
-            status.codes("200", res, req.method, dashboard, req.url)
+            super.getOK(res, req, dashboard)
         }
 
 
@@ -69,10 +67,10 @@ class dashboard extends handleR {
         var connectionId = req.params.id;
         var bool;
         var dashboard = await Dashboard.findById(connectionId, (err, dash) => {
-            bool = errorG.errorG(res, req.method, err, dash);
+            bool = super.errorG(res, req, err, dash);
         });
         if (bool) {
-            status.codes("200", res, req.method, dashboard, req.url)
+            super.getOK(res, req, dashboard)
         }
 
 
@@ -81,10 +79,10 @@ class dashboard extends handleR {
         var connectionId = req.params.id;
         var bool;
         await Dashboard.findByIdAndDelete(connectionId, (err, dash) => {
-            bool = errorG.errorG(res, req.method, err, dash);
+            bool = super.errorG(res, req, err, dash)
         });
         if (bool) {
-            status.codes("200_DEL", res, req.method, null, req.url)
+            super.deleteOK(res, req, null);
         }
 
     }
@@ -92,12 +90,12 @@ class dashboard extends handleR {
     async putDashboard(req, res) {
         var componentId = req.params.id;
         var body = req.body;
-        var bool;
+        var bool=true;
         var component_IDs = [];
-
-        const { error } = Connection.validateGet(body)
+        var j=0;
+        const { error } = Dashboard.validate(body)
         if (error) {
-            status.codes("400_Body", res, req.method, error, req.url)
+            super.bodyNOK(res, req, error)
         } else {
             if (body.component_1) component_IDs.push(req.body.component_1);
             if (body.combination) {
@@ -109,18 +107,18 @@ class dashboard extends handleR {
                 }
                 component_IDs.push(req.body.component_2);
             }
-            while (bool && i < component_IDs.length()) {
-                await Component.findById(component_IDs[i], (err, dash) => {
-                    bool = errorG.errorG(res, req.method, err, dash);
+            while (bool &&  j < component_IDs.length) {
+                await Component.findById(component_IDs[j], (err, dash) => {
+                    bool = super.errorG(res, req, err, dash);
                 });
-                i++;
+                j++;
             }
             if (bool) {
                 var dashboard = await Dashboard.findByIdAndUpdate(componentId, { $set: body }, (err, dash) => {
-                    bool = errorG.errorG(res, req.method, err, dash);
+                    bool = super.errorG(res, req, err, dash);
                 });
                 if (bool) {
-                    status.codes("200_PUT", res, req.method, dashboard, req.url)
+                    super.putOK(res, req, dashboard);
                 }
 
             }

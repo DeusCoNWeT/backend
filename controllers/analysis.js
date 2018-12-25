@@ -2,8 +2,6 @@
 
 let fs = require('fs');
 var Analysis = require('../models/analysis');
-var status = require('../middlewares/statusCodes.js');
-var errorG = require('../middlewares/generalError.js');
 var handleR = require('./handlerResponse.js')
 
 class analysis extends handleR {
@@ -49,29 +47,25 @@ class analysis extends handleR {
     async createAnalysis(req, res) {
         const { error } = Analysis.validate(req.body)
         if (error) {
-            status.codes("400_Body", res, req.method, error, req.url)
-        } else {
+            super.bodyNOK(res, req, error);        } else {
             let analysis = new Analysis(
                 {
                     Objects: req.body.Objects
                 }
             );
             await analysis.save();
-            status.codes("201", res, req.method, analysis, req.url)
-        }
+            super.postOK(res, req, analysis);        }
     }
 
 
     async getAnalysis(req, res) {
         const { error } = Analysis.validateGet(req.query)
         if (error) {
-            status.codes("400", res, req.method, error, req.url)
-        } else {
+            super.parametersNOK(res, req, error)        } else {
             var search_key = req.query;
 
             var analysis = await Analysis.find(search_key);
-            status.codes("200", res, req.method, analysis, req.url)
-        }
+            super.getOK(res, req, analysis)        }
 
     };
 
@@ -79,11 +73,9 @@ class analysis extends handleR {
         var analysisId = req.params.id;
         var bool;
         var analysis = await Analysis.findById(analysisId, (err, componen) => {
-            bool = errorG.errorG(res, req.method, err, componen);
-        });
+            bool = super.errorG(res, req, err, componen);        });
         if (bool) {
-            status.codes("200", res, req.method, analysis, req.url)
-        }
+            super.getOK(res, req, analysis)        }
 
 
     }
@@ -95,14 +87,11 @@ class analysis extends handleR {
 
         const { error } = Analysis.validateGet(body)
         if (error) {
-            status.codes("400_Body", res, req.method, error, req.url)
-        } else {
+            super.bodyNOK(res, req, error)        } else {
             var analysis = await Analysis.findByIdAndUpdate(analysisId, { $set: body }, (err, componen) => {
-                bool = errorG.errorG(res, req.method, err, componen);
-            });
+                bool = super.errorG(res, req, err, componen);            });
             if (bool) {
-                status.codes("200_PUT", res, req.method, analysis, req.url)
-            }
+                super.putOK(res, req, analysis);            }
 
         }
     };
@@ -113,15 +102,12 @@ class analysis extends handleR {
         var bool;
         const { error } = Analysis.validateGet(body)
         if (error) {
-            status.codes("400_Body", res, req.method, error, req.url)
-        } else {
+            super.bodyNOK(res, req, error);        } else {
             var analysis = await Analysis.findByIdAndUpdate(analysisId, { $push: { Objects: body.Objects } }, (err, componen) => {
-                bool = errorG.errorG(res, req.method, err, componen);
-            });
-            console.log(analysis)
+                bool = super.errorG(res, req, err, componen);            });
+            
             if (bool) {
-                status.codes("200_PUT", res, req.method, analysis, req.url)
-            }
+                super.putOK(res, req, analysis);            }
 
         }
     };
@@ -129,11 +115,9 @@ class analysis extends handleR {
         var analysisId = req.params.id;
         var bool;
         await Analysis.findByIdAndDelete(analysisId, (err, componen) => {
-            bool = errorG.errorG(res, req.method, err, componen);
-        });
+            bool = super.errorG(res, req, err, componen)        });
         if (bool) {
-            status.codes("200_DEL", res, req.method, null, req.url)
-        }
+            super.deleteOK(res, req, null);        }
 
     }
 }
