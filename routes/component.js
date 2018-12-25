@@ -4,8 +4,9 @@
 var express = require('express');
 var asyncMiddleware = require('../middlewares/async');
 // Cargamos el controlador
-var ComponentController = require('../controllers/component');
-var validateId=require('../middlewares/validateObjectId')
+var ComponentController = require('../controllers/component.js');
+const component = new ComponentController.component();
+var validateId = require('../middlewares/validateObjectId')
 
 // Llamamos al router
 var api = express.Router();
@@ -17,32 +18,33 @@ var api = express.Router();
 
 
 // POST COMPONENT
-api.post('/components',asyncMiddleware(ComponentController.component_create
-    ));
+
+api.post('/components', asyncMiddleware(component.component_create
+));
 
 
 
 // GET COMPONENT(Si le pasas parametros te permite buscar por los diferentes campos del componente)
-    //localhost:3800/api/component    (Devuelve todos los componentes de la colección)
-    //localhost:3800/api/component?name=prueba
+//localhost:3800/api/component    (Devuelve todos los componentes de la colección)
+//localhost:3800/api/component?name=prueba
 
-api.get('/components', asyncMiddleware(ComponentController.getComponent));
+
+api.get('/components', asyncMiddleware(component.getComponent));
 
 
 //GET COMPONENT BY ID
-api.get('/components/:id',validateId, asyncMiddleware(ComponentController.getComponentbyId));
+api.get('/components/:id', validateId, asyncMiddleware(component.getComponentbyId));
 
 
 //UPDATE COMPONENT
-api.put('/components/:id',validateId, asyncMiddleware(ComponentController.putComponent));
+
+api.put('/components/:id', validateId, asyncMiddleware(component.putComponent));
 
 
 //Delete
-api.delete('/components/:id',validateId,asyncMiddleware(ComponentController.deleteComponent));
+api.delete('/components/:id', validateId, asyncMiddleware(component.deleteComponent));
 
-
-api.get('/BVA', asyncMiddleware(ComponentController.BVA));
-
+api.get('/componentsBVA', asyncMiddleware(component.BVA));
 
 // Exportamos la configuración
 module.exports = api;
