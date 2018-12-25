@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "5ae5822f-063d-4ac8-a3e0-b60ca0ef6c93",
+		"name": "Components",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GETcomponentsID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"properties\": {\n        \"name\": \"nombre\"\n    },\n    \"name\": \"nombre\",\n    \"directory\": \"prueba1\",\n    \"description\": \"prueba1\",\n    \"version\": \"V1\",\n    \"__v\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/components",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"components"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETcomponents",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"properties\": {\n        \"name\": \"nombre\"\n    },\n    \"name\": \"nombre\",\n    \"directory\": \"prueba1\",\n    \"description\": \"prueba1\",\n    \"version\": \"V1\",\n    \"__v\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/components",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"components"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETfilterComponents",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"properties\": {\n        \"name\": \"nombre\"\n    },\n    \"name\": \"nombre\",\n    \"directory\": \"prueba1\",\n    \"description\": \"prueba1\",\n    \"version\": \"V1\",\n    \"__v\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/components?name=prueba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"components"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "prueba"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUTComponents",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"properties\": {\n        \"name\": \"nombre\"\n    },\n    \"name\": \"hola\",\n    \"directory\": \"prueba1\",\n    \"description\": \"prueba1\",\n    \"version\": \"V1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/components/5bf9b5d2e7056412ad688b13",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"components",
+						"5bf9b5d2e7056412ad688b13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POSTcomponents",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\n        \"properties\": {\n            \"name\": \"prueba3\",\n            \"Type\": \"prueba1\",\n            \"inPut\": \"prueba1\",\n            \"outPut\": \"prueba1\",\n            \"Default\": \"prueba1\"\n        },\n        \"name\": \"nombre\",\n        \"directory\": \"prueba\",\n        \"description\": \"prueba\",\n        \"version\": \"V1\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/components",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"components"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETEcomponents",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"Objects\":\n[{\n        \"object\": {\n        \t\"prueba\":\"prueba\"\n        },\n        \"Type\": \"prueba\"\n}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/components/5c2285e4db134e0ee18d53f6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"components",
+						"5c2285e4db134e0ee18d53f6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BVA",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"properties\": {\n        \"name\": \"nombre\"\n    },\n    \"name\": \"nombre\",\n    \"directory\": \"prueba1\",\n    \"description\": \"prueba1\",\n    \"version\": \"V1\",\n    \"__v\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/componentsBVA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"componentsBVA"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

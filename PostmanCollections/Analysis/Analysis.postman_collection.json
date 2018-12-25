@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "46fcac6b-6075-4364-a6f4-fe23cabce051",
+		"name": "Analysis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GETanalysis",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"properties\": {\n        \"name\": \"nombre\"\n    },\n    \"name\": \"nombre\",\n    \"directory\": \"prueba1\",\n    \"description\": \"prueba1\",\n    \"version\": \"V1\",\n    \"__v\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/analysis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"analysis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETanalysisID",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"properties\": {\n        \"name\": \"nombre\"\n    },\n    \"name\": \"nombre\",\n    \"directory\": \"prueba1\",\n    \"description\": \"prueba1\",\n    \"version\": \"V1\",\n    \"__v\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/analysis/5c0acfaabcf77511a6449d5c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"analysis",
+						"5c0acfaabcf77511a6449d5c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUTanalysis",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"Objects\":\n[{\n        \"object\": {\n        \t\"prueba\":\"prueba\"\n        },\n        \"Type\": \"prueba\"\n}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/analysis/5c2285e4db134e0ee18d53f6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"analysis",
+						"5c2285e4db134e0ee18d53f6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADDanlysis",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"Objects\":\n[{\n        \"object\": {\n        \t\"prueba\":\"prueba\"\n        },\n        \"Type\": \"prueba\"\n}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/analysisadd/5c2285e4db134e0ee18d53f6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"analysisadd",
+						"5c2285e4db134e0ee18d53f6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETEanalysis",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"Objects\":\n[{\n        \"object\": {\n        \t\"prueba\":\"prueba\"\n        },\n        \"Type\": \"prueba\"\n}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/analysis/5c2285e4db134e0ee18d53f6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"analysis",
+						"5c2285e4db134e0ee18d53f6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POSTanalysis",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{       \"Objects\":\n[{\n        \"object\": {\n        \t\"prueba\":\"prueba\"\n        },\n        \"Type\": \"prueba\"\n}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/analysis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"analysis"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

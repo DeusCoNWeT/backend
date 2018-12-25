@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "19846e5c-8b0a-401a-a7b4-4b1b896e5920",
+		"name": "Dashboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GETdashboard",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"component_1\": \"5bd73f762976df146f5754ba\",\n        \"combination\": [\n            {\n                \"id\": \"5bd8833cc3a0910e905fb7bd\",\n                \"property\": \"campo1\"\n            },\n            {\n                \"id\": \"5bd884772f17d50f1be8547d\",\n                \"property\": \"campo1\"\n            }\n        ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/dashboard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GETdashboardID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n      \n        \"component_1\": \"5bd73f762976df146f5754ba\",\n        \"combination\": [\n            {\n                \"id\": \"5bd8833cc3a0910e905fb7bd\",\n                \"property\": \"campo1\"\n            },\n            {\n                \"id\": \"5bd884772f17d50f1be8547d\",\n                \"property\": \"campo1\"\n            }\n        ]\n      \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/dashboard/5c040029168bba0eead7d705",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"dashboard",
+						"5c040029168bba0eead7d705"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUTdashboard",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n      \n        \"component_1\": \"5bf9b49cd92949157111ac27\",\n        \"combination\": [\n            {\n                \"id\": \"5bf9b50ed92949157111ac29\",\n                \"property\": \"campo1\"\n            },\n            {\n                \"id\": \"5bf9b50ed92949157111ac29\",\n                \"property\": \"campo1\"\n            }\n        ]\n      \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/dashboard/5bf9b49cd92949157111ac27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"dashboard",
+						"5bf9b49cd92949157111ac27"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POSTdashboard",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n      \n        \"component_1\": \"5bf9b49cd92949157111ac27\",\n        \"combination\": [\n            {\n                \"id\": \"5bf9b50ed92934557111a123\",\n                \"property\": \"campo1\"\n            },\n            {\n                \"id\": \"5bf9b50ed92949157111a125\",\n                \"property\": \"campo1\"\n            }\n        ]\n      \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/dashboard",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"dashboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETEdashboard",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n      \n        \"component_1\": \"5bf9b49cd92949157111ac27\",\n        \"combination\": [\n            {\n                \"id\": \"5bf9b50ed92934557111a123\",\n                \"property\": \"campo1\"\n            },\n            {\n                \"id\": \"5bf9b50ed92949157111a125\",\n                \"property\": \"campo1\"\n            }\n        ]\n      \n    }"
+				},
+				"url": {
+					"raw": "http://localhost:3800/dashboard.com/v1/api/dashboard/5bf9b49cd92949157111ac27",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3800",
+					"path": [
+						"dashboard.com",
+						"v1",
+						"api",
+						"dashboard",
+						"5bf9b49cd92949157111ac27"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
