@@ -2,6 +2,7 @@ var logger = require('../logger/logger.js');
 
 module.exports = class handlerResponse {
     constructor() {
+        this;
     }
     getOK(res, req, response) {
         res.status(200).send(response);
@@ -28,8 +29,7 @@ module.exports = class handlerResponse {
         logger.logger.info(`${req.method} | ${req.url} | El recurso se ha creado correctamente | ${response} |`);
 
     }
-
-
+    
     errorG(res, req, err, component) {
         if (err) {
             res.status(500).send({ message: 'Error interno del sistema' });
@@ -42,4 +42,6 @@ module.exports = class handlerResponse {
         }
         return true;
     }
+   
+    
 }
