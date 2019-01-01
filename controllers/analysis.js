@@ -18,7 +18,7 @@ class analysis extends handleR {
                 var data = JSON.stringify(req.body, null, 2);
                 fs.appendFile(fichero, data, function (err) {
                     if (err) throw err;
-                    console.log('Saved!');
+                    res.status(200).send({ message: 'File created and saved!' });
                 });
             } else {
                 var dataAux = JSON.parse(data);
@@ -50,6 +50,7 @@ class analysis extends handleR {
             super.bodyNOK(res, req, error);        } else {
             let analysis = new Analysis(
                 {
+                    name: req.body.name,
                     Objects: req.body.Objects
                 }
             );

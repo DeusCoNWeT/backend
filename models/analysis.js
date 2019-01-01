@@ -8,6 +8,10 @@ var Schema = mongoose.Schema;
 
 // Creamos el objeto del esquema y sus atributos
 var analysischema = Schema({
+    name:{
+        type: String,
+        required: [true]
+    },
     Objects: [{
         _id: false,
         object: {
@@ -18,6 +22,7 @@ var analysischema = Schema({
 
 const validate = function validateComponent(compo) {
     const schema = {
+        name: Joi.string(),
         Objects: Joi.array().items({
             object: Joi.object().required(),
             Type: Joi.string().required()
