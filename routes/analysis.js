@@ -14,7 +14,7 @@ var api = express.Router();
 
 
 // POST COMPONENT
-api.post('/analysisFichero/:fichero', asyncMiddleware(analysis.writeF));
+api.post('/analysisFile/:fichero', asyncMiddleware(analysis.writeF));
 api.post('/analysis', asyncMiddleware(analysis.createAnalysis));
 
 api.get('/analysis', asyncMiddleware(analysis.getAnalysis));

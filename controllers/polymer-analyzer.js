@@ -17,7 +17,7 @@ class polymerAnalyzer extends handleR {
     super()
   }
   async analyzer(req, res) {
-    analyzer.analyze(['PASAR VALOR']).then((analysis) => {
+    analyzer.analyze([req.body]).then((analysis) => {
       // Print the name of every property on paper-button, and where it was
       // inherited from.
       const [paperButton] = analysis.getFeatures(
@@ -30,10 +30,11 @@ class polymerAnalyzer extends handleR {
           } else {
             message += ` was defined directly on paper-button`;
           }
-          console.log("hola " + message);
+          super.getOK(res, req, message)
         }
       } else {
-        console.log(`my-element.html didn't define or import paper-button.`);
+        let message=`my-element.html didn't define or import paper-button.`;
+        super.getOK(res, req, message)
       }
     });
   }

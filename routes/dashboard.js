@@ -16,10 +16,10 @@ var api = express.Router();
 
 
 // POST COMPONENT
-api.post('/dashboard', asyncMiddleware(dashboard.dashboard_create));
-api.get('/dashboard', asyncMiddleware(dashboard.getDashboard));
-api.get('/dashboard/:id', validateId, asyncMiddleware(dashboard.getDashboardId));
-api.put('/dashboard/:id', validateId, asyncMiddleware(dashboard.putDashboard));
-api.delete('/dashboard/:id', validateId, asyncMiddleware(dashboard.deleteDashboard));
+api.post('/dashboards', asyncMiddleware(dashboard.dashboard_create));
+api.get('/dashboards', asyncMiddleware(dashboard.getDashboard));
+api.get('/dashboards/:id', validateId, asyncMiddleware(dashboard.getDashboardId));
+api.put('/dashboards/:id', validateId, asyncMiddleware(dashboard.putDashboard));
+api.delete('/dashboards/:id', validateId, asyncMiddleware(dashboard.deleteDashboard));
 
 module.exports = api;
