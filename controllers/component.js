@@ -103,7 +103,7 @@ class component extends handleR {
 
         var newComponents = [];
         var component = bva.allComponents
-        var versions = bva.getNewVersion();
+        var versions = bva.getNewVersion(req.params.time);
         var i = 0;
         for (let j = 0; j < component.length; j++) {
             var vers = component[j].directory.split('-')

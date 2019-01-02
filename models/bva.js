@@ -31,7 +31,10 @@ class BVA {
         //To Access components later
         this.allComponents = component;
     }
-    getNewVersion() {
+    getNewVersion(time) {
+        if (time) {
+            this.times_called = time;
+        }
         var lng = this.combinations.length;
 
         var versions = [];
