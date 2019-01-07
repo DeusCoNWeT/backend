@@ -11,9 +11,14 @@ var api = express.Router();
 
 
 
-// POST COMPONENT
+/**
+ * Analize html component
+ * @since 1.0
+ * @name post/polymerAnalyzer
+ * @param {string} body - The object insede the request to be analized
+ * 
+ * @returns {Object} Returns a message.
+ */
 api.post('/polymerAnalyzer', polymerAnalyzer.analyzer);
 
-
-// Exportamos la configuración
 module.exports = api;

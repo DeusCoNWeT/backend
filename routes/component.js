@@ -3,48 +3,79 @@
 
 var express = require('express');
 var asyncMiddleware = require('../middlewares/async');
-// Cargamos el controlador
 var ComponentController = require('../controllers/component.js');
 const component = new ComponentController.component();
 var validateId = require('../middlewares/validateObjectId')
 
-// Llamamos al router
+
 var api = express.Router();
 
 
 
-// Creamos una ruta para los métodos que tenemos en nuestros controladores
-
-
-
-// POST COMPONENT
-
+/**
+ * Create a new component
+ * @since 1.0
+ * @name post/component
+ * @param {string} body - The object insede the request
+ * 
+ * @returns {Object} Returns the new component.
+ */
 api.post('/components', asyncMiddleware(component.component_create
 ));
 
-
-
-// GET COMPONENT(Si le pasas parametros te permite buscar por los diferentes campos del componente)
-//localhost:3800/api/component    (Devuelve todos los componentes de la colección)
-//localhost:3800/api/component?name=prueba
-
-
+/**
+ * Read collection of components
+ * @since 1.0
+ * @name get/component
+ * @param {string} [name]  - Optional filters inside the request
+ * @param {string} [directory]  - Optional filters inside the request
+ * @param {string} [description]  - Optional filters inside the request
+ * @param {string} [version]  - Optional filters inside the request
+ * @param {string} [properties]  - Optional filters inside the request
+ * 
+ * @returns {Array} Returns the list of component.
+ */
 api.get('/components', asyncMiddleware(component.getComponent));
 
-
-//GET COMPONENT BY ID
+/**
+ * Get by id component
+ * @since 1.0
+ * @name get/component
+ * @param {string} id - Id of the resource.
+ * 
+ * @returns {Object} Returns component.
+ */
 api.get('/components/:id', validateId, asyncMiddleware(component.getComponentbyId));
 
-
-//UPDATE COMPONENT
-
+/**
+ * Upgrade component
+ * @since 1.0
+ * @name put/component
+ * @param {string} body - The object insede the request
+ * @param {string} id - Id of the resource.
+ * 
+ * @returns {Object} Returns upgrated component.
+ */
 api.put('/components/:id', validateId, asyncMiddleware(component.putComponent));
 
 
-//Delete
+/**
+ * Delete component
+ * @since 1.0
+ * @name delete/component
+ * @param {string} id - Id of the resource.
+ * 
+ * @returns {Object} Returns message.
+ */
 api.delete('/components/:id', validateId, asyncMiddleware(component.deleteComponent));
 
+/**
+ * Controler to change the versions of the components
+ * @since 1.0
+ * @name get/componentBVA
+ * 
+ * @returns {Object} Returns upgradeted components.
+ */
 api.get('/componentsBVA', asyncMiddleware(component.BVA));
 
-// Exportamos la configuración
 module.exports = api;
