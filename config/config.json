@@ -1,0 +1,26 @@
+{
+    "production": {
+        "config_id": "production",
+        "app_name": "my app",
+        "direction": "mongo",
+        "mongo_port": 27017,
+        "node_port": 3800,
+        "database": "dashboards"
+    },
+    "development": {
+        "config_id": "development",
+        "app_name": "my app",
+        "direction": "localhost",
+        "mongo_port": 27017,
+        "node_port": 3800,
+        "database": "dashboards"
+    },
+    "test":{
+        "config_id": "test",
+        "app_name": "my app",
+        "direction": "localhost",
+        "mongo_port": 27017,
+        "node_port": 3800,
+        "database": "dashboards"
+    }
+}
