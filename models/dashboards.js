@@ -8,6 +8,10 @@ var Schema = mongoose.Schema;
 
 // Creamos el objeto del esquema y sus atributos
 var dashboardSchema = Schema({
+  name: {
+    type: String,
+    required: [true]
+  },
     component_1: {
         type: String,
         required: [true]
@@ -15,6 +19,7 @@ var dashboardSchema = Schema({
     combination: [{
        _id : false ,
         id : String,
+        nombre: String,
         property : String
          }]
 });
@@ -22,9 +27,11 @@ var dashboardSchema = Schema({
 
 const validate=function validateComponent(compo){
     const schema ={
+        name: Joi.string().required(),
         component_1: Joi.string().required(),
         combination: Joi.array().items({
             id: Joi.string().required(),
+            nombre: Joi.string().required(),
             property: Joi.string().required()
     })
     };
@@ -32,9 +39,11 @@ const validate=function validateComponent(compo){
   }
   const validateGet=function validateComponent(compo){
     const schema ={
+      name: Joi.string(),
       component_1: Joi.string(),
       combination: Joi.array().items({
         id: Joi.string(),
+        nombre: Joi.string().required(),
         property: Joi.string()
 })
     };

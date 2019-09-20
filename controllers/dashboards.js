@@ -31,11 +31,13 @@ class dashboard extends handleR {
             if (bool) {
                 let dashboard = new Dashboard(
                     {
+                        name: req.body.name,
                         component_1: req.body.component_1,
                         combination: objComb
 
                     }
                 );
+                // console.log(dashboard)
                 await dashboard.save();
                 super.postOK(res, req, dashboard);
             }
