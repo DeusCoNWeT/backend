@@ -2,6 +2,8 @@
 var Component = require('../models/component');
 var Dashboard = require('../models/dashboards');
 var handleR = require('./handlerResponse.js')
+var conf = require('../config/data.json');
+let versiones = conf.versions;
 
 class dashboard extends handleR {
     constructor() {
@@ -17,7 +19,6 @@ class dashboard extends handleR {
             super.bodyNOK(res, req, error);
         } else {
             var long = req.body.combination.length;
-            component_IDs.push(req.body.component_1);
             for (let i = 0; i < long; i++) {
                 component_IDs.push(req.body.combination[i].id);
                 objComb.push(req.body.combination[i])
@@ -32,8 +33,8 @@ class dashboard extends handleR {
                 let dashboard = new Dashboard(
                     {
                         name: req.body.name,
-                        component_1: req.body.component_1,
-                        combination: objComb
+                        combination: objComb,
+                        version: req.body.version
 
                     }
                 );
@@ -59,6 +60,27 @@ class dashboard extends handleR {
                      property: "campo1"
                  }}});
      */
+            super.getOK(res, req, dashboard)
+        }
+
+
+    };
+
+    async BVA(req, res) {
+        // cogemos la lista de versiones (en el fichero config.json), y cogemos la primera y la ponemos la ultima (BVA)
+        // la que hemos sacado es la que le pasaremos al front
+        let apoyo = conf.versions[0]
+        // conf.versions.push(apoyo)
+
+        // el resto del codigo es trivial (o eso supongo porque lo he copiado de lo que ya estaba hehe)
+        var bool;
+        var dashboard = await Dashboard.find(({ 'version': apoyo }), (err, dash) => {
+            // conf.versions.unshift(apoyo)
+            bool = super.errorG(res, req, err, dash);
+        });
+        if (bool) {
+            let apoyo = conf.versions.shift()
+            conf.versions.push(apoyo)
             super.getOK(res, req, dashboard)
         }
 
@@ -92,14 +114,13 @@ class dashboard extends handleR {
     async putDashboard(req, res) {
         var componentId = req.params.id;
         var body = req.body;
-        var bool=true;
+        var bool = true;
         var component_IDs = [];
-        var j=0;
+        var j = 0;
         const { error } = Dashboard.validate(body)
         if (error) {
             super.bodyNOK(res, req, error)
         } else {
-            if (body.component_1) component_IDs.push(req.body.component_1);
             if (body.combination) {
                 var long = req.body.combination.length;
                 for (let i = 0; i < long; i++) {
@@ -107,9 +128,8 @@ class dashboard extends handleR {
                         component_IDs.push(req.body.combination[i].id);
                     }
                 }
-                component_IDs.push(req.body.component_2);
             }
-            while (bool &&  j < component_IDs.length) {
+            while (bool && j < component_IDs.length) {
                 await Component.findById(component_IDs[j], (err, dash) => {
                     bool = super.errorG(res, req, err, dash);
                 });

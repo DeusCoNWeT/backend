@@ -20,14 +20,7 @@ class component extends handleR {
                     name: req.body.name,
                     directory: req.body.directory,
                     description: req.body.description,
-                    version: req.body.version,
-                    properties: {
-                        name: req.body.properties.name,
-                        Type: req.body.properties.Type,
-                        inPut: req.body.properties.inPut,
-                        outPut: req.body.properties.outPut,
-                        Default: req.body.properties.Default
-                    }
+                    version: req.body.version
                 }
             );
 

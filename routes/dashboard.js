@@ -67,4 +67,14 @@ api.put('/dashboards/:id', validateId, asyncMiddleware(dashboard.putDashboard));
  */
 api.delete('/dashboards/:id', validateId, asyncMiddleware(dashboard.deleteDashboard));
 
+/**
+ * get a version of each dashboards
+ * @since 1.0
+ * @name get/dashboardsBVA
+ * 
+ * 
+ * @returns {Array} Returns the list of dashboards.
+ */
+api.get('/dashboardsBVA', asyncMiddleware(dashboard.BVA));
+
 module.exports = api;
