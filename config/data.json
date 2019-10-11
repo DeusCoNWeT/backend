@@ -1,5 +1,6 @@
 {
     "versions":["Estable","Ram","Intercon"],
+    "dashboards":["tiempo-mapa","trafico-mapa"],
     "secretKey":"clave",
     "domain":"dashboard.com",
     "versionAPI":"V1",

@@ -4,6 +4,20 @@ var Dashboard = require('../models/dashboards');
 var handleR = require('./handlerResponse.js')
 var conf = require('../config/data.json');
 let versiones = conf.versions;
+let posibles = conf.dashboards;
+
+let combinaciones = [['Estable', 'Estable', 'Estable'], ['Estable', 'Estable', 'Ram'], ['Estable', 'Ram', 'Intercon'],
+['Ram', 'Intercon', 'Estable'], ['Ram', 'Estable', 'Intercon'], ['Ram', 'Estable', 'Estable'], ['Intercon', 'Estable', 'Estable'],
+['Intercon', 'Estable', 'Ram'], ['Intercon', 'Ram', 'Estable']]
+// 000
+// 001
+// 012
+// 120
+// 102
+// 100
+// 200
+// 201
+// 210
 
 class dashboard extends handleR {
     constructor() {
@@ -66,26 +80,55 @@ class dashboard extends handleR {
 
     };
 
+    //bva v2, los dashboards te los da segun la combinacion de arriba (hardcoded)
     async BVA(req, res) {
-        // cogemos la lista de versiones (en el fichero config.json), y cogemos la primera y la ponemos la ultima (BVA)
-        // la que hemos sacado es la que le pasaremos al front
-        let apoyo = conf.versions[0]
-        // conf.versions.push(apoyo)
 
+        let apoyo = combinaciones[0]
+        // conf.versions.push(apoyo)
+        let solucion=[]
+        // super.getOK(res, req, apoyo[0])
         // el resto del codigo es trivial (o eso supongo porque lo he copiado de lo que ya estaba hehe)
         var bool;
-        var dashboard = await Dashboard.find(({ 'version': apoyo }), (err, dash) => {
-            // conf.versions.unshift(apoyo)
-            bool = super.errorG(res, req, err, dash);
-        });
+        
+        for (let i=0; i < posibles.length; i++) {
+            var dashboard = await Dashboard.find(({ 'version': apoyo[i], 'name': posibles[i] }), (err, dash) => {
+                // conf.versions.unshift(apoyo)
+                bool = super.errorG(res, req, err, dash);
+            });
+            solucion.push(dashboard)
+            
+        }
         if (bool) {
-            let apoyo = conf.versions.shift()
-            conf.versions.push(apoyo)
-            super.getOK(res, req, dashboard)
+            let apoyo = combinaciones.shift()
+            combinaciones.push(apoyo)
+            super.getOK(res, req, solucion)
         }
 
 
     };
+
+
+    ////bva antiguo, todos los dashboards te los da conn una misma version
+    // async BVA(req, res) {
+    //     // cogemos la lista de versiones (en el fichero config.json), y cogemos la primera y la ponemos la ultima (BVA)
+    //     // la que hemos sacado es la que le pasaremos al front
+    //     let apoyo = conf.versions[0]
+    //     // conf.versions.push(apoyo)
+
+    //     // el resto del codigo es trivial (o eso supongo porque lo he copiado de lo que ya estaba hehe)
+    //     var bool;
+    //     var dashboard = await Dashboard.find(({ 'version': apoyo }), (err, dash) => {
+    //         // conf.versions.unshift(apoyo)
+    //         bool = super.errorG(res, req, err, dash);
+    //     });
+    //     if (bool) {
+    //         let apoyo = conf.versions.shift()
+    //         conf.versions.push(apoyo)
+    //         super.getOK(res, req, dashboard)
+    //     }
+
+
+    // };
 
     async getDashboardId(req, res) {
         var connectionId = req.params.id;
