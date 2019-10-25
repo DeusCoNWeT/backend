@@ -4,8 +4,16 @@
 // Cargamos el módulo de mongoose para poder conectarnos a MongoDB
 var mongoose = require('mongoose');
 
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
+
 // *Cargamos el fichero app.js con la configuración de Express
 var app = require('./app');
+
+app.use(cookieParser());
+app.use(session({secret: "Shh, its a secret!"}));
+
 
 // Creamos la variable PORT para indicar el puerto en el que va a funcionar el servidor
 const config = require('./config/config.json');

@@ -9,8 +9,9 @@ var DashboardController = require('../controllers/dashboards');
 const dashboard = new DashboardController.dashboard()
 
 var api = express.Router();
-
-
+api.use(require('cookie-parser')());
+// api.use(require('express-session')());
+// var session = require('express-session');
 
 // Creamos una ruta para los métodos que tenemos en nuestros controladores
 

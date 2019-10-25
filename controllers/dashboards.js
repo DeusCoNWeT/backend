@@ -83,40 +83,62 @@ class dashboard extends handleR {
     //bva v2, los dashboards te los da segun la combinacion de arriba (hardcoded)
     async BVA(req, res) {
 
-        let apoyo = combinaciones[0]
-        // conf.versions.push(apoyo)
-        let solucion = []
-        // super.getOK(res, req, apoyo[0])
-        // el resto del codigo es trivial (o eso supongo porque lo he copiado de lo que ya estaba hehe)
-        let bool;
-        let query = []
-        for (let i = 0; i < posibles.length; i++) {
-            query.push({ 'version': apoyo[i], 'name': posibles[i] })
+
+        // let my cookie be (or not be) here
+        let mc = req.cookies.comb;
+
+        // if not make it
+        if (!mc) {
+            let apoyo = combinaciones[0]
+            // conf.versions.push(apoyo)
+            let solucion = []
+            // super.getOK(res, req, apoyo[0])
+            // el resto del codigo es trivial (o eso supongo porque lo he copiado de lo que ya estaba hehe)
+            let bool;
+            let query = []
+            for (let i = 0; i < posibles.length; i++) {
+                query.push({ 'version': apoyo[i], 'name': posibles[i] })
+            }
+
+            let dashboard = await Dashboard.find(({ $or: query }), (err, dash) => {
+                // conf.versions.unshift(apoyo)
+                bool = super.errorG(res, req, err, dash);
+            });
+            if (bool) {
+                // cookies
+                let id = JSON.stringify(apoyo)
+                res.cookie('comb', id );
+                req.cookies.comb = id;
+
+                apoyo = combinaciones.shift()
+                combinaciones.push(apoyo)
+                super.getOK(res, req, dashboard)
+            }
+
+
+        }
+        else {
+            let apoyo = JSON.parse(mc)
+
+            let bool;
+            let query = []
+            for (let i = 0; i < posibles.length; i++) {
+                query.push({ 'version': apoyo[i], 'name': posibles[i] })
+            }
+
+            let dashboard = await Dashboard.find(({ $or: query }), (err, dash) => {
+                // conf.versions.unshift(apoyo)
+                bool = super.errorG(res, req, err, dash);
+            });
+            if (bool) {
+                // let apoyo = combinaciones.shift()
+                // combinaciones.push(apoyo)
+                super.getOK(res, req, dashboard)
+            }
+
+
         }
 
-        let dashboard = await Dashboard.find(({ $or: query }), (err, dash) => {
-            // conf.versions.unshift(apoyo)
-            bool = super.errorG(res, req, err, dash);
-        });
-
-        // for (let i = 0; i < posibles.length; i++) {
-        //     query.push({})
-        //     var dashboard = await Dashboard.findOne(({ 'version': apoyo[i], 'name': posibles[i] }), (err, dash) => {
-        //         // conf.versions.unshift(apoyo)
-        //         bool = super.errorG(res, req, err, dash);
-        //     });
-        //     if (solucion == 'yokeze') {
-        //         solucion = dashboard
-        //     }
-        //     else {
-        //         solucion.push(dashboard)            }
-
-        // }
-        if (bool) {
-            let apoyo = combinaciones.shift()
-            combinaciones.push(apoyo)
-            super.getOK(res, req, dashboard)
-        }
 
 
     };
