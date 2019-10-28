@@ -9,6 +9,14 @@ var DashboardController = require('../controllers/dashboards');
 const dashboard = new DashboardController.dashboard()
 
 var api = express.Router();
+api.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header("Access-Control-Allow-Credentials", true)
+    next();
+  });
 api.use(require('cookie-parser')());
 // api.use(require('express-session')());
 // var session = require('express-session');

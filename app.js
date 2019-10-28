@@ -29,8 +29,9 @@ app.use(domain,analysis);
 app.use(domain,dashboard);
 app.use(domain,analyzer);
 app.use(error);
+// esto creo que no sirve de nada, no lo borro porque lo puso alguien antes que o pero vamos, el sabra lo que hace espero
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:8000/");
+  res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Credentials", true)
   next();
