@@ -9,6 +9,9 @@ var DashboardController = require('../controllers/dashboards');
 const dashboard = new DashboardController.dashboard()
 
 var api = express.Router();
+
+//esto estaba antesen index.js, por eso no funcioonaba, lo pongo aqui para permitir cors cookies, y allow ccredentials (cookies)
+// 
 api.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -17,6 +20,8 @@ api.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", true)
     next();
   });
+
+//modulo de cookies 
 api.use(require('cookie-parser')());
 // api.use(require('express-session')());
 // var session = require('express-session');

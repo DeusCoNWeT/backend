@@ -7,17 +7,18 @@ let versiones = conf.versions;
 let posibles = conf.dashboards;
 
 let combinaciones = [['Estable', 'Estable', 'Estable'], ['Estable', 'Estable', 'Ram'], ['Estable', 'Ram', 'Intercon'],
-['Ram', 'Intercon', 'Estable'], ['Ram', 'Estable', 'Intercon'], ['Ram', 'Estable', 'Estable'], ['Intercon', 'Estable', 'Estable'],
-['Intercon', 'Estable', 'Ram'], ['Intercon', 'Ram', 'Estable']]
+['Ram', 'Intercon', 'FPS'], ['Intercon', 'FPS', 'Estable'], ['FPS', 'Estable', 'Estable'], ['Intercon', 'Estable', 'Estable'],
+['Intercon', 'Estable', 'Ram'], ['Intercon', 'Ram', 'FPS'],['Ram', 'Estable', 'Estable'],['Ram', 'Estable', 'Intercon'],['Ram', 'FPS', 'Estable'],
+['FPS','Ram','Intercon'],['FPS','Estable','Ram']]
 // 000
 // 001
 // 012
-// 120
-// 102
-// 100
-// 200
-// 201
-// 210
+// 123
+// 230
+// 300
+// 
+// 
+// 
 
 class dashboard extends handleR {
     constructor() {
