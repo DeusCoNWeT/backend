@@ -17,7 +17,7 @@ var analyzer=require('./routes/polymer-analyzer');
 const error=require('./middlewares/error');
 
 var version=conf.versionAPI;
-var domain=`/${conf.domain}/${version}/${conf.apiSubDomain}`;
+var domain=`/${conf.apiSubDomain}/${version}`;
 //Configuramos bodyParser para que convierta el body de nuestras peticiones a JSON
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -28,6 +28,7 @@ app.use(domain, user);
 app.use(domain,analysis);
 app.use(domain,dashboard);
 app.use(domain,analyzer);
+app.use('/', express.static('static'))
 app.use(error);
 // esto creo que no sirve de nada, no lo borro porque lo puso alguien antes que o pero vamos, el sabra lo que hace espero
 app.use(function(req, res, next) {

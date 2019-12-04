@@ -55,7 +55,7 @@ mongoose.connect(`mongodb://${mongo_conection}`, { useNewUrlParser: true })
 
 // CREAR EL SERVIDOR WEB CON NODEJS
 const server = app.listen(node_port, () => {
-    console.log(`servidor corriendo en http://${listen}`);
+    console.log(`servidor corriendo en http://localhost:${node_port}`);
 });
 
 module.exports = server;

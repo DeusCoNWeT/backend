@@ -10,6 +10,9 @@ services:
       - mongo
     environment:
       - NODE_ENV=production
+    ## Mount dashboard front-end on /opt/static
+    #volumes:
+    #- "../Dashboard/:/opt/static/"
   mongo:
     container_name: mongo
     image: mongo
