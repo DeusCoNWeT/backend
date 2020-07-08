@@ -4,20 +4,20 @@
   "description": "ApiREST",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "cookie-parser": "1.4.4",
     "cors": "^2.8.5",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-session": "1.17.0",
-    "joi": "^14.0.6",
-    "jwt-simple": "^0.5.5",
-    "moment": "^2.22.2",
-    "mongoose": "^5.7.13",
+    "joi": "^14.3.1",
+    "jwt-simple": "^0.5.6",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.22",
     "polymer-analyzer": "^3.2.0",
-    "winston": "^3.1.0"
+    "winston": "^3.3.3"
   },
   "devDependencies": {
-    "jest": "^25.0.0",
+    "jest": "^25.5.4",
     "supertest": "^3.3.0"
   },
   "scripts": {
